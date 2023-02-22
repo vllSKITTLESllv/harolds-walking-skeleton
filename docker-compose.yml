@@ -12,17 +12,19 @@ services:
   db:
     build:
       context: ./db
-    volumes:
-      - db-volume:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    volumes:
+      - db-volume:/var/lib/postgresql/data
   server:
     build:
       context: ./server
     ports:
       - "5001:5001"
       - "9229:9229"
+    depends_on:
+      - db
     volumes:
       - ./server:/app
-  volumes:
-    db-volume:
+volumes:
+  db-volume:
