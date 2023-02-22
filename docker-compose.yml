@@ -9,6 +9,13 @@ services:
       - server
     volumes:
       - ./client:/app/
+  db:
+    build:
+      context: ./db
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   server:
     build:
       context: ./server
@@ -17,3 +24,5 @@ services:
       - "9229:9229"
     volumes:
       - ./server:/app
+  volumes:
+    db-volume:
