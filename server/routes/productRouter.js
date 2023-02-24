@@ -14,6 +14,7 @@ const getProducts = async () => {
 router.get("/", async (req, res, next) => {
 	try {
 		const products = await getProducts();
+		console.log(products);
 		return res.json(products);
 	} catch (error) {
 		next(error);
